@@ -1,0 +1,101 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+
+class Node{
+    public:
+    int data;
+    Node * Next;
+};
+
+void insertAtFisrt(Node ** head, int data)
+{
+    Node * newNode = new Node();
+    newNode->data = data;
+    newNode->Next = *head;
+    *head = newNode;
+    cout << data << " is inserted to linked list" << endl;
+}
+
+void insertAtLast(Node ** head, int data)
+{
+    Node* newNode = new Node();
+    newNode->data = data;
+    newNode->Next = NULL;
+
+    if(*head == NULL)
+    {
+        *head = newNode;
+        return;
+    }
+
+    Node* temp = *head;
+    while ( temp->Next != NULL)
+    {
+        temp = temp->Next;
+    }
+
+    temp->Next = newNode;
+}
+
+int calcSize(Node* node)
+{
+    int size = 0;
+    while ( node != NULL)
+    {
+        size++;
+        node = node->Next;
+    }
+    return size;
+}
+
+void insertAtPosition(Node ** head, int data, int pos)
+{
+    int size = calcSize(*head);
+
+    if(pos < 1 || pos > size)
+    {
+        cout << "Can't insert at this position " << pos << "is not valid position" << endl;
+    }
+    else
+    {
+        Node * newNode = new Node();
+        newNode->data = data;
+        
+        Node * temp = *head;
+
+        while (--pos)
+        {
+           temp = temp->Next;
+        }
+        newNode->Next = temp->Next;
+        temp->Next = newNode;
+    }
+}
+
+
+void Display(Node* head)
+{
+    while (head != NULL)
+    {
+       cout << head->data << " ";
+       head = head->Next;
+    }
+    cout << endl;
+    
+}
+
+
+int main()
+{
+    Node * Head = NULL;
+    insertAtFisrt(&Head,1);
+    insertAtLast(&Head,12);
+    insertAtFisrt(&Head,3);
+    insertAtPosition(&Head,5, 2);
+    insertAtLast(&Head,4);
+    insertAtPosition(&Head,10, 3);
+    Display(Head);
+    return 0;
+}
+
