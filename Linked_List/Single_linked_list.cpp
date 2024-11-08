@@ -72,6 +72,23 @@ public:
         }
         
     }
+
+    void reverseList()
+    {
+        Node * current = head;
+        Node * Prev; 
+        Node * Next;
+
+        while ( current != NULL)
+        {
+           Next = current->next;
+           current->next = Prev;
+           Prev = current;
+           current = Next;
+        }
+
+        head = Prev;   
+    }
 };
 
 
@@ -82,6 +99,8 @@ int main()
     list.insertAtLast(3);
     list.insertAtFirst(1);
     list.insertAtLast(4);
+
+    // list.reverseList();
 
     list.print();
 }
