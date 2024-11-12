@@ -42,7 +42,11 @@ class DoubleLinkedList{
     {
         Node* newNode  = new Node(value);
 
-
+        if(head == NULL)
+        {
+            head = newNode;
+            return;
+        }
         Node* temp = head;
         while ( temp->next != NULL)
         {
@@ -58,7 +62,7 @@ class DoubleLinkedList{
         Node * temp =  head;
         while ( temp != NULL)
         {
-            cout << " List is :" << temp->data << " ";
+            cout << " List is: " << temp->data << endl;
             temp = temp->next;
         }
     }
@@ -68,6 +72,7 @@ class DoubleLinkedList{
 int main()
 {
     DoubleLinkedList list;
+
     list.insertAtEnd(4);
     list.insertAtHead(3);
     list.insertAtHead(2);
